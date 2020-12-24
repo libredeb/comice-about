@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Comice About
+GenericName=ComiceOS About Dialog
+Comment=ComiceOS About Dialog, that show your machine information
+Categories=GNOME;GTK;Utility;
+Exec=com.github.libredeb.comice-about
+Icon=comice-about
+Terminal=false
+Type=Application
+StartupNotify=false
