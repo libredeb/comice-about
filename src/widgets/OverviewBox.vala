@@ -24,13 +24,13 @@ public class OverviewBox : Gtk.Box {
         
         var overview_title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_title = new Gtk.Label ("");
-        overview_title.set_markup ("<b>comiceOS</b> Big Sur");
+        overview_title.set_markup (Resources.OS_TITLE);
         overview_title.get_style_context().add_class("overview_title");
         overview_title_box.pack_start (overview_title, false, true, 0);
         
         var overview_version_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_version = new Gtk.Label ("");
-        overview_version.set_markup ("Version 11.0 (20A4299v)");
+        overview_version.set_markup (Resources.OS_REVISION);
         overview_version.get_style_context().add_class("overview_desc");
         overview_version_box.pack_start (overview_version, false, true, 0);
         
