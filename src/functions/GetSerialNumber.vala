@@ -15,6 +15,11 @@ public string getSerialNumber () {
                 int char_end = serial_string.index_of_char (')');
                 serial_string = serial_string.substring (char_end + 1, -1);
             }
+        } else {
+            Process.spawn_command_line_sync (
+                "/bin/bash -c 'cat /proc/cpuinfo | grep ^Serial | cut -d \":\" -f2'",
+                out serial_string
+            );
         }
     } catch (GLib.Error e) {
         serial_string = "UNKNOWN";

@@ -7,6 +7,14 @@ public string get_video_memory () {
             "/bin/bash -c 'dmesg | grep -o -P -i \"(?<=vram:).*(?=M 0x)\"'",
             out video_string
         );
+        // If the previous command return null or empty, we have a raspberry pi
+        if (video_string == "") {
+            Process.spawn_command_line_sync (
+                "/bin/bash -c 'vcgencmd get_mem gpu'",
+                out video_string
+            );
+            video_string = video_string.split ("=")[1].replace ("M", "");
+        }
         video_string = video_string.strip () + " MB";
     } catch (GLib.Error e) {
         video_string = "0 MB";
@@ -67,9 +75,12 @@ public string getGraphics () {
                         graphics += "\n" + model;
                 }
             }
+        } else {
+            graphics = "Integrated";
         }
     } catch (GLib.Error e) {
-        graphics = "Unknown video card";
+        warning ("LSPCI not work!");
+        graphics = "Video card not found";
     }
     graphics = graphics + " " + get_video_memory();
 

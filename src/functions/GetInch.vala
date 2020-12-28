@@ -24,13 +24,17 @@ public string getInch () {
 	}
 	int width = int.parse (metrics[0]);
 	int height = int.parse (metrics[1]);
-	int w = width * width;
-	int h = height * height;
-	double diagonal = GLib.Math.sqrt (w + h);
-	double inches = GLib.Math.round (diagonal/25.4);
-	
-	char[] buf = new char[double.DTOSTR_BUF_SIZE];
-    return inches.to_str (buf);
+    if (width == 0 || height == 0) {
+	    int w = width * width;
+	    int h = height * height;
+	    double diagonal = GLib.Math.sqrt (w + h);
+	    double inches = GLib.Math.round (diagonal/25.4);
+	    
+	    char[] buf = new char[double.DTOSTR_BUF_SIZE];
+        return inches.to_str (buf);
+    } else {
+        return "0";
+    }
 }
 
 
