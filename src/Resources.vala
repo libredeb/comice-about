@@ -7,4 +7,7 @@ namespace Resources {
     public const string OS_TITLE = "<b>Twister OS</b>";
     public const string OS_REVISION = "Version 1.9.3 (65f67e4b)";
     public const string OS_TRADEMARK = "™ and © 2020  Pi Labs. All rights Reserved";
+    
+    public const string OS_RESOURCES = "<b>TwisterOS Resources      </b>";
+    public const string DEV_RESOURCES = "<b>Raspberry Pi Resources</b>";
 }
