@@ -1,0 +1,9 @@
+com.github.libredeb.comice-about (0.0.1~rev1) bionic; urgency=medium
+
+  * Initial version, first release
+  * Implemented the first 4 important tabs
+  * New functions to show real hardware information
+  * Adapted to Twister OS, new logos and trademarks
+  * New tab Support added, and fixed functions to work in rpi3
+
+ -- Juan Lozano <libredeb@gmail.com>  Sat, 02 Jan 2021 20:43:03 -0300
