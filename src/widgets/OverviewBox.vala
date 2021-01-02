@@ -10,33 +10,27 @@ public class OverviewBox : Gtk.Box {
         main_box.pack_start (overview_box, true, true, 0);
         
         // Comice Logo
-        var logo_left_separator = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);
-        var logo_right_separator = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);
-        logo_left_separator.set_opacity (0.0);
-        logo_right_separator.set_opacity (0.0);
         var comice_os_image = new Gtk.Image.from_file (Resources.DATA_DIR + "/logo.png");
-        overview_box.pack_start (logo_left_separator, true, true, 24);
-        overview_box.pack_start (comice_os_image, false, true, 0);
-        overview_box.pack_start (logo_right_separator, true, true, 24);
+        overview_box.pack_start (comice_os_image, false, true, 54);
         
         // Title and Version
         var overview_detail_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         
         var overview_title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_title = new Gtk.Label ("");
-        overview_title.set_markup ("<b>comiceOS</b> Big Sur");
+        overview_title.set_markup (Resources.OS_TITLE);
         overview_title.get_style_context().add_class("overview_title");
         overview_title_box.pack_start (overview_title, false, true, 0);
         
         var overview_version_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_version = new Gtk.Label ("");
-        overview_version.set_markup ("Version 11.0 (20A4299v)");
+        overview_version.set_markup (Resources.OS_REVISION);
         overview_version.get_style_context().add_class("overview_desc");
         overview_version_box.pack_start (overview_version, false, true, 0);
         
         var device_name_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var device_name = new Gtk.Label ("");
-        device_name.set_markup ("<b>ComiceBook Pro</b>");
+        device_name.set_markup ("<b>" + getDeviceModel () + "</b>");
         device_name.get_style_context().add_class("overview_desc");
         device_name_box.pack_start (device_name, false, true, 0);
         
@@ -89,16 +83,13 @@ public class OverviewBox : Gtk.Box {
         overview_box.pack_start (overview_detail_box, true, true, 0);
         
         // Trademark and Copyleft
-        var trademark_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var tmk_left_separator = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);
-        tmk_left_separator.set_opacity (0.0);
-        var trademark = new Gtk.Label ("™ and © 1990-2020 Pear Inc. All rights Reserved. License Agreement");
+        var trademark_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        var trademark = new Gtk.Label (Resources.OS_TRADEMARK);
         trademark.get_style_context().add_class("overview_trademark");
-        trademark_box.pack_start (tmk_left_separator, true, true, 0);
         trademark_box.pack_start (trademark, false, true, 0);
         main_box.pack_start (trademark_box, true, false, 0);
         
-        this.add (main_box);
+        this.pack_start (main_box, true, true, 0);
     }
 
 }

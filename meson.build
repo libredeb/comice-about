@@ -48,6 +48,8 @@ executable(
     'src/widgets/DisplaysBox.vala',
     'src/widgets/StorageBox.vala',
     'src/widgets/MemoryBox.vala',
+    'src/widgets/SupportBox.vala',
+    'src/functions/GetDeviceModel.vala',
     'src/functions/GetProcessor.vala',
     'src/functions/GetMemory.vala',
     'src/functions/GetStartupDisk.vala',
@@ -99,6 +101,16 @@ install_data(
 )
 install_data(
     join_paths('data','icons', 'display.png'),
+    install_dir: join_paths(datadir, PROJECT_NAME)
+)
+
+install_data(
+    join_paths('data','icons', 'os_resources.png'),
+    install_dir: join_paths(datadir, PROJECT_NAME)
+)
+
+install_data(
+    join_paths('data','icons', 'dev_resources.png'),
     install_dir: join_paths(datadir, PROJECT_NAME)
 )
 

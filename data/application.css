@@ -113,3 +113,17 @@
     border-radius: 6px;
     border: 2px dashed #5c5c5c;
 }
+
+.support_btn {
+    background: transparent;
+    border: 0px solid transparent;
+    padding: 1px 10px 0px 4px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 0px transparent;
+}
+
+.support_btn:hover {
+    background: #5e5e5e;
+    color: @bg_color;
+}
+

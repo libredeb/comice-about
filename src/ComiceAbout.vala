@@ -55,6 +55,9 @@ public class ComiceAbout : Gtk.Application {
         var memorybox = new MemoryBox ();
         stack.add_titled (memorybox, "memorybox", "Memory");
         
+        var supportbox = new SupportBox ();
+        stack.add_titled (supportbox, "supportbox", "Support");
+        
         // Switcher bind
         var stack_switcher = new Gtk.StackSwitcher ();
         stack_switcher.set_stack (stack);
