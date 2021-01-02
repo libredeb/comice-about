@@ -102,6 +102,12 @@ install_data(
     install_dir: join_paths(datadir, PROJECT_NAME)
 )
 
+# Install comicemem, this script save RAM memory information into a file
+install_data(
+    join_paths('data','comicemem.sh'),
+    install_dir: '/etc/profile.d'
+)
+
 # Install our .desktop file so the Applications Menu will see it
 install_data(
     join_paths('data', meson.project_name() + '.desktop'),
