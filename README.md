@@ -26,16 +26,16 @@ It is being developed for **comiceOS**.
    ```
       $ meson build --prefix=/usr
    ```
-   3. Compile LightPad:
+   3. Compile comice-about:
    ```
       $ cd build
       $ ninja
    ```
-   4. Install LightPad in the system:
+   4. Install comice-about in the system:
    ```
       $ sudo ninja install
    ```
-   5. (OPTIONAL) Uninstall LightPad:
+   5. (OPTIONAL) Uninstall comice-about:
    ```
       $ sudo ninja uninstall
    ```
