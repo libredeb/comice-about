@@ -18,7 +18,7 @@ public class SupportBox : Gtk.Box {
         
         var resources_os_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         var os_help_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var os_help = new Gtk.Button.with_label ("⮊ TwisterOS FAQ");
+        var os_help = new Gtk.Button.with_label ("⮊ Twister OS FAQ");
         os_help.get_style_context().add_class("support_btn");
         os_help_box.pack_start (os_help, false, true, 0);
         
@@ -28,7 +28,7 @@ public class SupportBox : Gtk.Box {
         os_manual_box.pack_start (os_manual, false, true, 0);
         
         var os_support_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var os_support = new Gtk.Button.with_label ("⮊ TwisterOS Discord");
+        var os_support = new Gtk.Button.with_label ("⮊ Twister OS Discord");
         os_support.get_style_context().add_class("support_btn");
         os_support_box.pack_start (os_support, false, true, 0);
         
@@ -36,7 +36,21 @@ public class SupportBox : Gtk.Box {
             try {
                 Process.spawn_command_line_async ("xdg-open https://twisteros.com/faq.html");
             } catch (GLib.SpawnError e) {
-                warning ("Error opening APP.DISPLAYS_PREFERENCES");
+                warning ("Error opening APP.OS_HELP_URL");
+            }
+        });
+        os_manual.clicked.connect(()=> {
+            try {
+                Process.spawn_command_line_async ("xdg-open /usr/local/share/doc/README.pdf");
+            } catch (GLib.SpawnError e) {
+                warning ("Error opening APP.USER_MANUAL_FILE");
+            }
+        });
+        os_support.clicked.connect(()=> {
+            try {
+                Process.spawn_command_line_async ("xdg-open https://discord.gg/Fh8sjmu");
+            } catch (GLib.SpawnError e) {
+                warning ("Error opening APP.OS_SUPPORT_URL");
             }
         });
         
@@ -77,6 +91,28 @@ public class SupportBox : Gtk.Box {
         var vi_info = new Gtk.Button.with_label ("⮊ Important Information...");
         vi_info.get_style_context().add_class("support_btn");
         vi_info_box.pack_start (vi_info, false, true, 0);
+        
+        sepcs.clicked.connect(()=> {
+            try {
+                Process.spawn_command_line_async ("xdg-open https://www.raspberrypi.org/products/");
+            } catch (GLib.SpawnError e) {
+                warning ("Error opening APP.HARDWARE_SPECIFICATIONS_URL");
+            }
+        });
+        hw_sp.clicked.connect(()=> {
+            try {
+                Process.spawn_command_line_async ("xdg-open https://www.raspberrypi.org/documentation/hardware/raspberrypi/README.md");
+            } catch (GLib.SpawnError e) {
+                warning ("Error opening APP.HARDWARE_SUPPORT_URL");
+            }
+        });
+        vi_info.clicked.connect(()=> {
+            try {
+                Process.spawn_command_line_async ("xdg-open https://www.raspberrypi.org/help/");
+            } catch (GLib.SpawnError e) {
+                warning ("Error opening APP.HARDWARE_VI_INFO_URL");
+            }
+        });
         
         resources_dev_vbox.pack_start (specs_box, false, true, 0);
         resources_dev_vbox.pack_start (hw_sp_box, false, true, 8);
