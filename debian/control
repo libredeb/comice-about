@@ -1,0 +1,22 @@
+Source: com.github.libredeb.comice-about
+Section: x11
+Priority: optional
+Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
+Build-Depends: meson,
+               ninja-build,
+               debhelper (>= 10.5.1),
+               cdbs,
+               valac (>= 0.28.0),
+               libglib2.0-dev (>= 2.50.0),
+               libgtk-3-dev (>= 3.22.0)
+Standards-Version: 4.1.1
+
+Package: comice-about
+Version: 0.0.1
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends},
+         libc6,
+         libglib2.0-0 (>= 2.50.0),
+         libgtk-3-0 (>= 3.22.0)
+Description: comice-about is a lightweight and powerful about app, that show real hardware information.
+
