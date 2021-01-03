@@ -58,9 +58,9 @@ public class SupportBox : Gtk.Box {
         resources_os_vbox.pack_start (os_manual_box, false, true, 8);
         resources_os_vbox.pack_start (os_support_box, false, true, 0);
         
-        os_resources_box.pack_start (resources_lbl, false, true, 60);
-        os_resources_box.pack_start (os_logo, false, true, 0);
-        os_resources_box.pack_start (resources_os_vbox, false, true, 42);
+        os_resources_box.pack_start (resources_lbl, false, true, 40);
+        os_resources_box.pack_start (os_logo, false, true, 12);
+        os_resources_box.pack_start (resources_os_vbox, false, true, 12);
         
         // Medium Separator
         var medium_separator = new Gtk.Separator(Gtk.Orientation.HORIZONTAL);
@@ -118,9 +118,9 @@ public class SupportBox : Gtk.Box {
         resources_dev_vbox.pack_start (hw_sp_box, false, true, 8);
         resources_dev_vbox.pack_start (vi_info_box, false, true, 0);
         
-        dev_resources_box.pack_start (dev_resources_lbl, false, true, 60);
-        dev_resources_box.pack_start (dev_logo, false, true, 0);
-        dev_resources_box.pack_start (resources_dev_vbox, false, true, 42);
+        dev_resources_box.pack_start (dev_resources_lbl, false, true, 40);
+        dev_resources_box.pack_start (dev_logo, false, true, 12);
+        dev_resources_box.pack_start (resources_dev_vbox, false, true, 12);
         
         // Package everything
         main_box.pack_start (os_resources_box, false, true, 24);

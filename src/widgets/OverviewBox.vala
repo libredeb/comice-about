@@ -24,7 +24,9 @@ public class OverviewBox : Gtk.Box {
         
         var overview_version_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_version = new Gtk.Label ("");
-        overview_version.set_markup (Resources.OS_REVISION);
+        string osversion_str = getOSversion ();
+        string hash = GLib.Checksum.compute_for_string (GLib.ChecksumType.MD5, osversion_str);
+        overview_version.set_markup ("Version " + osversion_str + " (" + hash.substring (0, 8) + ")");
         overview_version.get_style_context().add_class("overview_desc");
         overview_version_box.pack_start (overview_version, false, true, 0);
         

@@ -1,5 +1,5 @@
 Source: com.github.libredeb.comice-about
-Section: x11
+Section: utils
 Priority: optional
 Maintainer: Juan Pablo Lozano <libredeb@gmail.com>
 Build-Depends: meson,

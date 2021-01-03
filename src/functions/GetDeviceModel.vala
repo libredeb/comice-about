@@ -8,11 +8,12 @@ public string getDeviceModel () {
     string output = "";
     
     try {
-        Process.spawn_command_line_sync (
-            "cat /sys/devices/virtual/dmi/id/sys_vendor",
-            out vendor
-        );
-        if (!("sys_vendor" in vendor)) {
+        var vendor_file = GLib.File.new_for_path ("/sys/devices/virtual/dmi/id/sys_vendor");
+        if (vendor_file.query_exists ()) {
+            Process.spawn_command_line_sync (
+                "cat /sys/devices/virtual/dmi/id/sys_vendor",
+                out vendor
+            );
             vendor = vendor.substring (0, 1).up () + vendor.substring (1, vendor.length - 1).down ();
             vendor = vendor.strip ();
             
@@ -48,7 +49,7 @@ public string getDeviceModel () {
         output = "UNK Model";
         warning ("Cant read device model!");
     }
-    
+
     model = model.strip ();
     
     if (vendor != "") {

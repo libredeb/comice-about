@@ -59,6 +59,7 @@ executable(
     'src/functions/GetStorageInfo.vala',
     'src/functions/StorageUsage.vala',
     'src/functions/MemoryRAM.vala',
+    'src/functions/GetOSVersion.vala',
     dependencies: [
         dependency('gio-unix-2.0', version: '>=2.56.0'),
         dependency('glib-2.0', version: '>=2.56.0'),
