@@ -29,16 +29,16 @@ public class MemoryBox : Gtk.Box {
         var line1_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var desc_1st_line = new Gtk.Label ("");
         desc_1st_line.set_markup (
-            "Your Comice contains " 
+            "Your device contains " 
             + ram.getSlots().to_string () 
-            + "memory slots, each of which accepts"
+            + " memory slots, each of which"
         );
         desc_1st_line.get_style_context().add_class("desc_1st_line");
         line1_box.pack_start (desc_1st_line, false, true, 0);
         
         var line2_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var desc_2nd_line = new Gtk.Label ("");
-        desc_2nd_line.set_markup ("a " + ram.getFreq() + " MHz " + ram.getType() + " memory module.");
+        desc_2nd_line.set_markup ("accepts a " + ram.getFreq() + " MHz " + ram.getType() + " memory module.");
         desc_2nd_line.get_style_context().add_class("overview_desc");
         line2_box.pack_start (desc_2nd_line, false, true, 0);
         
@@ -49,12 +49,17 @@ public class MemoryBox : Gtk.Box {
         var desc_3rd_line = new Gtk.Label ("");
         int available = ram.getSlots() % 2;
         int in_use = 0;
+
         if (available == 0) {
             desc_3rd_line.set_markup ("All memory slots are currently in use.");
         } else {
             in_use = ram.getSlots() - available;
+            if (in_use == 0) {
+                in_use = ram.getSlots();
+                available = 0;
+            }
             desc_3rd_line.set_markup (
-                in_use.to_string () + "memory slots in use, "
+                in_use.to_string () + " memory slots in use, "
                 + available.to_string () + " available"
             );
         }
@@ -93,7 +98,7 @@ public class MemoryBox : Gtk.Box {
         first_modules.pack_start (ram_1, false, true, 16);
         
         Gtk.Box ram_2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        Gtk.Box ram_empty = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        //Gtk.Box ram_empty = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         Gtk.Box ram_3 = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         Gtk.Box ram_empty2 = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         Gtk.Box ram_4 = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -107,7 +112,7 @@ public class MemoryBox : Gtk.Box {
             ram_2.pack_start (lbl_ram_2, false, true, 0);
             
             first_modules.pack_start (ram_2, false, true, 0);
-        } else {
+        } /*else {
             // Empty ram slot
             ram_empty.get_style_context().add_class("ram_slot_empty");
             var lbl_ram_empty = new Gtk.Label ("");
@@ -116,7 +121,7 @@ public class MemoryBox : Gtk.Box {
             ram_empty.pack_start (lbl_ram_empty, false, true, 0);
             
             first_modules.pack_start (ram_empty, false, true, 0);
-        }
+        }*/
         
         if (ram.getSlots() >= 3) {
             // 3rd ram slot

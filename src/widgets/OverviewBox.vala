@@ -86,7 +86,8 @@ public class OverviewBox : Gtk.Box {
         
         // Trademark and Copyleft
         var trademark_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        var trademark = new Gtk.Label (Resources.OS_TRADEMARK);
+        var now = new GLib.DateTime.now_local ();
+        var trademark = new Gtk.Label ("™ and © " + now.get_year ().to_string () + " Pi Labs. All rights Reserved");
         trademark.get_style_context().add_class("overview_trademark");
         trademark_box.pack_start (trademark, false, true, 0);
         main_box.pack_start (trademark_box, true, false, 0);

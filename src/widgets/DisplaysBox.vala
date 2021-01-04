@@ -21,11 +21,11 @@ public class DisplaysBox : Gtk.Box {
         
         // Resolution and Inch
         var inch = new Gtk.Label ("");
-        inch.set_markup (getInch () + "-inch (" + getScreenResolution () + ")");
+        inch.set_markup ("Resolution: " + getScreenResolution ());
         inch.get_style_context().add_class("overview_desc");
         
         // Button to open display preferences panel
-        var display_panel_btn = new Gtk.Button.with_label ("Displays Preferences...");
+        var display_panel_btn = new Gtk.Button.with_label ("Display Preferences...");
         var display_btn_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         display_btn_box.pack_end (display_panel_btn, false, true, 20);
         display_panel_btn.clicked.connect(()=> {

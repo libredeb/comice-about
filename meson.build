@@ -2,7 +2,7 @@
 project(
     'com.github.libredeb.comice-about',
     'vala', 'c',
-    version: '0.0.8',
+    version: '0.0.4',
     meson_version: '>=0.45.0'
 )
 

@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Twister OS About
+Name=About Twister OS
 GenericName=Twister OS About Dialog
-Comment=Twister OS About Dialog, that show your hardware information
+Comment=Twister OS About Dialog, displays system information
 Categories=GNOME;GTK;Utility;
 Exec=com.github.libredeb.comice-about
 Icon=comice-about
