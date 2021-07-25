@@ -33,7 +33,12 @@ public class MemoryRAM {
                 } else if ("Type" in line) {
                     this.type = line.split (" ")[1];
                 } else if ("Size" in line) {
-                    this.sizes[i] = line.split (" ")[1];
+                    if ("MB" in line) {
+                        int amounth = int.parse(line.split (" ")[1]) / 1024;
+                        this.sizes[i] = amounth.to_string ();
+                    } else {
+                        this.sizes[i] = line.split (" ")[1];
+                    }
                     i++;
                 }
             }
