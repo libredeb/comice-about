@@ -16,14 +16,30 @@ public string getInch () {
     string[] screens = output.split (" ");
     string[] metrics = new string[2];
     int m = 0;
+    string dimensions = "";
     foreach (unowned string str in screens) {
 		if ("mm" in str) {
 		    metrics[m] = str.replace ("mm", "");
 		    m++;
-		}
+		} else if (("x" in str) && (dimensions == "")) {
+            dimensions = str;
+        }
 	}
-	int width = int.parse (metrics[0]);
-	int height = int.parse (metrics[1]);
+    
+    int width = 0;
+    int height = 0;
+
+    if ((metrics[0] == "0") || (metrics[1] == "0")) {
+        double dpi = 0.02645;
+        width = int.parse (dimensions.split ("x")[0]);
+        height = int.parse (dimensions.split ("x")[1].split ("+")[0]);
+        width = (int)(width * dpi) * 10;
+        height = (int)(height * dpi) * 10;
+    } else {
+        width = int.parse (metrics[0]);
+	    height = int.parse (metrics[1]);
+    }
+	
 	int w = width * width;
 	int h = height * height;
 	double diagonal = GLib.Math.sqrt (w + h);

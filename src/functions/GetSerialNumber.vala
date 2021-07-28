@@ -1,6 +1,11 @@
 using GLib;
 
 public string getSerialNumber () {
+    /*
+     * In this case, the original number is conformed by 12
+     * characters alphanumeric. To simulate this format, we
+     * are getting the bios_version and get it MD5 hash.
+     */
     string serial_string = "";
     try {
         Process.spawn_command_line_sync (
@@ -16,6 +21,10 @@ public string getSerialNumber () {
                 serial_string = serial_string.substring (char_end + 1, -1);
             }
         }
+        serial_string = GLib.Checksum.compute_for_string (
+            GLib.ChecksumType.MD5,
+            serial_string, serial_string.length
+        ).substring (0, 12).up ();
     } catch (GLib.Error e) {
         serial_string = "UNKNOWN";
     }

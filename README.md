@@ -16,11 +16,11 @@ It is being developed for **comiceOS**.
    1. Install dependencies:
    * For Ubuntu:
    ```
-      $ sudo apt-get install meson ninja-build cdbs valac libvala-*-dev libglib2.0-dev libgtk-3-dev python3 python3-wheel python3-setuptools
+      $ sudo apt-get install meson ninja-build cdbs valac libvala-*-dev libglib2.0-dev libgtk-3-dev python3 python3-wheel python3-setuptools baobab
    ```
    * For Fedora:
    ```
-      $ sudo dnf install meson ninja-build cdbs vala libvala-devel glib-devel gtk3-devel python3 python3-wheel python3-setuptools
+      $ sudo dnf install meson ninja-build cdbs vala libvala-devel glib-devel gtk3-devel python3 python3-wheel python3-setuptools baobab
    ```
    2. Create a build folder:
    ```

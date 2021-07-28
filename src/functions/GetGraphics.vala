@@ -4,10 +4,10 @@ public string get_video_memory () {
     string video_string = "";
     try {
         Process.spawn_command_line_sync (
-            "/bin/bash -c 'dmesg | grep -o -P -i \"(?<=vram:).*(?=M 0x)\"'",
+            "/bin/bash -c 'glxinfo | grep -i \"Video memory\"'",
             out video_string
         );
-        video_string = video_string.strip () + " MB";
+        video_string = video_string.split (":")[1].strip ().replace ("MB", "") + " MB";
     } catch (GLib.Error e) {
         video_string = "0 MB";
     }
@@ -42,6 +42,8 @@ public string get_graphics_from_string (string graphics) {
         return "Video AMD";
     } else if ("Radeon" in result) {
         return "Video AMD Radeon";
+    } else if ("QXL" in result) {
+        return "Virtual QXL";
     } else {
         return "Unknown video card";
     }

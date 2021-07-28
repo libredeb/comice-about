@@ -48,6 +48,7 @@ executable(
     'src/widgets/DisplaysBox.vala',
     'src/widgets/StorageBox.vala',
     'src/widgets/MemoryBox.vala',
+    'src/functions/GetDeviceModel.vala',
     'src/functions/GetProcessor.vala',
     'src/functions/GetMemory.vala',
     'src/functions/GetStartupDisk.vala',

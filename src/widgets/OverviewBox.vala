@@ -24,19 +24,19 @@ public class OverviewBox : Gtk.Box {
         
         var overview_title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_title = new Gtk.Label ("");
-        overview_title.set_markup ("<b>comiceOS</b> Big Sur");
+        overview_title.set_markup (Resources.OVERVIEW_TITLE);
         overview_title.get_style_context().add_class("overview_title");
         overview_title_box.pack_start (overview_title, false, true, 0);
         
         var overview_version_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_version = new Gtk.Label ("");
-        overview_version.set_markup ("Version 11.0 (20A4299v)");
+        overview_version.set_markup (Resources.OVERVIEW_VERSION);
         overview_version.get_style_context().add_class("overview_desc");
         overview_version_box.pack_start (overview_version, false, true, 0);
         
         var device_name_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var device_name = new Gtk.Label ("");
-        device_name.set_markup ("<b>ComiceBook Pro</b>");
+        device_name.set_markup ("<b>" + getDeviceModel () + "</b>");
         device_name.get_style_context().add_class("overview_desc");
         device_name_box.pack_start (device_name, false, true, 0);
         
