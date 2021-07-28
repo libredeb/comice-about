@@ -66,7 +66,7 @@ public class OverviewBox : Gtk.Box {
         
         var serial_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var serial = new Gtk.Label ("");
-        serial.set_markup ("<b>Serial Number  </b>  " + getSerialNumber());
+        serial.set_markup ("<b>Serial Number</b>  " + getSerialNumber());
         serial.get_style_context().add_class("overview_desc");
         serial_box.pack_start (serial, false, true, 0);
         
