@@ -4,7 +4,7 @@ public string get_video_memory () {
     string video_string = "";
     try {
         Process.spawn_command_line_sync (
-            "/bin/bash -c 'glxinfo | grep -i \"Video memory\"'",
+            "/bin/bash -c 'glxinfo | grep -i \"Video memory\" | head -n 1'",
             out video_string
         );
         video_string = video_string.split (":")[1].strip ().replace ("MB", "") + " MB";

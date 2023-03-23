@@ -42,7 +42,7 @@ public class ComiceAbout : Gtk.Application {
          * path once. For example: /dev/sda | Unknown | Live
          */
         var hdd_device = getStartupDisk();
-        warning ("Your startup disk is: " + hdd_device);
+        message ("Your startup disk is: " + hdd_device);
         
         var overviewbox = new OverviewBox (hdd_device);
         stack.add_titled (overviewbox, "overviewbox", "Overview");

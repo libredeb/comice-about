@@ -18,21 +18,21 @@ public class MemoryRAM {
             string line;
             
             Process.spawn_command_line_sync (
-                "/bin/bash -c 'cat " + GLib.Environment.get_variable ("HOME") + "/.comicemem | wc -l'",
+                """/bin/bash -c "cat """ + GLib.Environment.get_variable ("HOME") + """/.comicemem | grep -E '^Size|^Type|^Speed' | wc -l" """,
                 out output
             );
             
             int l = int.parse (output);
             this.slots = l / 3;
-            
+
             sizes = new string[this.slots];
             
             while ((line = dis.read_line (null)) != null) {
-                if ("Speed" in line) {
+                if ("Speed" in line && line.index_of ("Speed") == 0) {
                     this.freq = line.split (" ")[1];
-                } else if ("Type" in line) {
+                } else if ("Type" in line && line.index_of ("Type") == 0) {
                     this.type = line.split (" ")[1];
-                } else if ("Size" in line) {
+                } else if ("Size" in line && line.index_of ("Size") == 0) {
                     if ("MB" in line) {
                         int amounth = int.parse(line.split (" ")[1]) / 1024;
                         this.sizes[i] = amounth.to_string ();
@@ -43,7 +43,7 @@ public class MemoryRAM {
                 }
             }
         } catch (GLib.Error e) {
-            warning ("Cant read RAM memory information");
+            warning ("Cant read RAM memory information. $HOME/.comicemem does not exist");
         }
     }
     
