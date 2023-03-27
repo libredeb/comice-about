@@ -93,6 +93,7 @@ To debug a Vala application, you must follow these steps:
 * Fixed log level for startup disk
 * Fixed a bug that caused unwanted information to be added when obtaining information from the graphics card
 * Fixed a bug that caused the whole application to crash when getting information from the RAM memory
+* Fixed a bug that prevents the application startup when there is more than one screen
 
 **Version 0.0.1**
 * Initial version, First release
