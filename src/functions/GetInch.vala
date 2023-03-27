@@ -5,7 +5,7 @@ public string getInch () {
     
     try {
         Process.spawn_command_line_sync (
-            "/bin/bash -c 'xrandr | grep \" connected\"'",
+            "/bin/bash -c 'xrandr | grep \" connected\" | head -n 1'",
             out output
         );
     } catch (GLib.SpawnError e) {
@@ -55,7 +55,7 @@ public string getScreenResolution () {
     
     try {
         Process.spawn_command_line_sync (
-            "/bin/bash -c \"xdpyinfo | awk '/dimensions/ {print $2}'\"",
+            "/bin/bash -c \"xrandr | grep '*' | head -n 1 | xargs | cut -d ' ' -f 1\"",
             out output
         );
     } catch (GLib.SpawnError e) {
