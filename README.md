@@ -34,7 +34,7 @@ It is being developed for **comiceOS**.
 4. Install comice-about in the system:
    ```
    $ sudo ninja install
-   $ sudo MESON_INSTALL_PREFIX="/usr" python3 ../post_install.py
+   $ sudo MESON_INSTALL_PREFIX="/usr" USER="$HOME" python3 ../post_install.py
    ```
 5. (OPTIONAL) Uninstall comice-about:
    ```
