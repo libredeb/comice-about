@@ -44,7 +44,19 @@ public class ComiceAbout : Gtk.Application {
         var hdd_device = getStartupDisk();
         message ("Your startup disk is: " + hdd_device);
         
-        var overviewbox = new OverviewBox (hdd_device);
+        /*
+         * To optimize the code of getting RAM memory information,
+         * we will do the things once here.
+         */
+        // First we get all RAM Memory information from .comicemem file
+        var ram = new MemoryRAM ();
+        int total_ram = 0;
+        int i;
+        for (i = 0; i < ram.getSlots(); i++) {
+            total_ram += int.parse(ram.getSizes()[i]);
+        }
+
+        var overviewbox = new OverviewBox (hdd_device, total_ram);
         stack.add_titled (overviewbox, "overviewbox", "Overview");
         
         var displaysbox = new DisplaysBox ();
@@ -53,7 +65,7 @@ public class ComiceAbout : Gtk.Application {
         var storagebox = new StorageBox (hdd_device);
         stack.add_titled (storagebox, "storagebox", "Storage");
         
-        var memorybox = new MemoryBox ();
+        var memorybox = new MemoryBox (ram);
         stack.add_titled (memorybox, "memorybox", "Memory");
         
         // Switcher bind

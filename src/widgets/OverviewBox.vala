@@ -1,6 +1,6 @@
 public class OverviewBox : Gtk.Box {
 
-    public OverviewBox(string hdd_device) {
+    public OverviewBox(string hdd_device, int amount_of_ram) {
     
         /*
          * Overview Page
@@ -48,7 +48,7 @@ public class OverviewBox : Gtk.Box {
         
         var memory_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var memory = new Gtk.Label ("");
-        memory.set_markup ("<b>Memory</b>  " + getMemory());
+        memory.set_markup ("<b>Memory</b>  " + amount_of_ram.to_string () + " GB (" + getMemory() + " usable)");
         memory.get_style_context().add_class("overview_desc");
         memory_box.pack_start (memory, false, true, 0);
         

@@ -1,19 +1,17 @@
 public class MemoryBox : Gtk.Box {
 
-    public MemoryBox() {
+    public MemoryBox(MemoryRAM ram) {
         /*
          * RAM Memory Page
          */
         var main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        
-        // First we get all RAM Memory information
-        var ram = new MemoryRAM ();
         
         // Total and Description
         var total_desc_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var total_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         total_box.get_style_context ().add_class ("total_box");
         var description_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        
         var total_ram = new Gtk.Label ("");
         int total = 0;
         int i;
