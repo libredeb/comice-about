@@ -33,9 +33,13 @@ It is being developed for **comiceOS**.
    ```
 4. Install comice-about in the system:
    ```
-   $ sudo ninja install
-   $ sudo MESON_INSTALL_PREFIX="/usr" USER="$HOME" python3 ../post_install.py
+   $ sudo USER="$HOME" ninja install
    ```
+   > **NOTE:** in case the application doesn't open, indicating failure getting RAM memory information. Please, run the next command:
+   > ```bash
+   >    $ sudo MESON_INSTALL_PREFIX="/usr" USER="$HOME" python3 ../post_install.py
+   > ```
+
 5. (OPTIONAL) Uninstall comice-about:
    ```
    $ sudo ninja uninstall
