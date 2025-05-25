@@ -1,6 +1,11 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 Juan Pablo Lozano <libredeb@gmail.com>
+ */
+
 using GLib;
 
-public string getStorageType (string hdd_device) {
+public string get_storage_type (string hdd_device) {
     /*
      * Parse the root name, for example in case of '/dev/sda'
      * the root name is 'sda'
@@ -18,7 +23,7 @@ public string getStorageType (string hdd_device) {
     } catch (GLib.SpawnError e) {
         warning ("Cant read the type of Disk");
     }
-    
+
     if (device_type == 1) {
         return "HDD Disk";
     } else if (device_type == 0) {
@@ -29,10 +34,10 @@ public string getStorageType (string hdd_device) {
 }
 
 
-public string getStorageCapacity (string hdd_device) {
+public string get_storage_capacity (string hdd_device) {
     string output = "";
     uint64 bytes = 0;
-    
+
     try {
         Process.spawn_command_line_sync (
             "lsblk -b --output SIZE -n -d " + hdd_device,
@@ -42,6 +47,6 @@ public string getStorageCapacity (string hdd_device) {
     } catch (GLib.SpawnError e) {
         warning ("Cant read the capacity of Disk");
     }
-    
+
     return GLib.format_size (bytes, GLib.FormatSizeFlags.IEC_UNITS);
 }

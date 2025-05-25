@@ -15,57 +15,61 @@ It is being developed for **comiceOS**.
 
 1. Install dependencies:
    * For Ubuntu:
-      ```
-      $ sudo apt-get install meson ninja-build cdbs valac libvala-*-dev libglib2.0-dev libgtk-3-dev python3 python3-wheel python3-setuptools baobab mesa-utils
+      ```sh
+      sudo apt-get install meson ninja-build cdbs valac libvala-*-dev libglib2.0-dev libgtk-3-dev python3 python3-wheel python3-setuptools baobab mesa-utils
       ```
    * For Fedora:
-      ```
-      $ sudo dnf install meson ninja-build cdbs vala libvala-devel glib-devel gtk3-devel python3 python3-wheel python3-setuptools baobab glx-utils
+      ```sh
+      sudo dnf install meson ninja-build cdbs vala libvala-devel glib-devel gtk3-devel python3 python3-wheel python3-setuptools baobab glx-utils
       ```
 2. Create a build folder:
-   ```
-   $ meson build --prefix=/usr
+   ```sh
+   meson setup build --prefix=/usr
    ```
 3. Compile `comice-about`:
+   ```sh
+   cd build && ninja
    ```
-   $ cd build
-   $ ninja
-   ```
-4. Install comice-about in the system:
-   ```
-   $ sudo USER="$HOME" ninja install
+4. Install **comice-about** in your system:
+   ```sh
+   sudo USER="$HOME" ninja install
    ```
    > **NOTE:** in case the application doesn't open, indicating failure getting RAM memory information. Please, run the next command:
-   > ```bash
-   > $ sudo MESON_INSTALL_PREFIX="/usr" USER="$HOME" python3 ../post_install.py
+   > ```sh
+   > sudo MESON_INSTALL_PREFIX="/usr" USER="$HOME" python3 ../post_install.py
    > ```
 
 5. (OPTIONAL) Uninstall comice-about:
+   ```sh
+   sudo ninja uninstall && rm -Rf $HOME/.comicemem
    ```
-   $ sudo ninja uninstall
-   $ rm -Rf $HOME/.comicemem
-   ```
+
+## Supported Environment Variables
+
+To control the behavior of **comice-about** you can set some of the next environment variables:
+
+- `ABOUT_DISPLAY`: allow to define which application execute with **Display Preferences** button of _Display_ section.
+- `ABOUT_DISK_MANAGER`: allow to define which application execute with **Manage** buton of _Storage_ section.
 
 ## How to Debug?
 
 To debug a Vala application, you must follow these steps:
 
 1. Create build folder with type debug:
-   ```bash
-   $ meson build --prefix=/usr --buildtype=debug
+   ```sh
+   meson setup build --prefix=/usr --buildtype=debug
    ```
 2. Compile `comice-about`:
-   ```bash
-   $ cd build
-   $ ninja
+   ```sh
+   cd build && ninja
    ```
 3. Run the application in debug mode:
-   ```bash
-   $ gdb ./com.github.libredeb.comice-about
+   ```sh
+   gdb ./com.github.libredeb.comice-about
    ```
 
    The above command has the next output:
-   ```bash
+   ```sh
    GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
    Copyright (C) 2022 Free Software Foundation, Inc.
    License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -92,6 +96,8 @@ To debug a Vala application, you must follow these steps:
    To exit the debugger, type `q` command (also known as `quit` command) and press ENTER.
 
 ## Changelog
+**Version 0.0.3**
+* Road to first public release
 
 **Version 0.0.2**
 * Fixed log level for startup disk
