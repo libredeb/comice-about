@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 Juan Pablo Lozano <libredeb@gmail.com>
+ */
+
 public class ComiceAbout : Gtk.Application {
     public ComiceAbout () {
         Object (
@@ -14,7 +19,7 @@ public class ComiceAbout : Gtk.Application {
         };
         main_window.set_resizable (false);
         main_window.set_skip_taskbar_hint (true);
-        
+
         // CSS Styles
         Gtk.CssProvider css_provider = new Gtk.CssProvider ();
         try {
@@ -27,23 +32,23 @@ public class ComiceAbout : Gtk.Application {
         } catch (GLib.Error e) {
             warning ("Error loading CSS file!: " + e.message);
         }
-        
+
         // Create HeaderBar 
         var header_bar = new Gtk.HeaderBar ();
         header_bar.set_show_close_button (true);
-        
+
         // Create Stack Buttons
         var stack = new Gtk.Stack ();
         stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
         stack.set_transition_duration (500);
-        
+
         /*
          * To optimize the part of hdd device, we will get the device
          * path once. For example: /dev/sda | Unknown | Live
          */
-        var hdd_device = getStartupDisk();
+        var hdd_device = get_startup_disk ();
         message ("Your startup disk is: " + hdd_device);
-        
+
         /*
          * To optimize the code of getting RAM memory information,
          * we will do the things once here.
@@ -52,29 +57,29 @@ public class ComiceAbout : Gtk.Application {
         var ram = new MemoryRAM ();
         int total_ram = 0;
         int i;
-        for (i = 0; i < ram.getSlots(); i++) {
-            total_ram += int.parse(ram.getSizes()[i]);
+        for (i = 0; i < ram.get_slots (); i++) {
+            total_ram += int.parse (ram.get_sizes ()[i]);
         }
 
         var overviewbox = new OverviewBox (hdd_device, total_ram);
         stack.add_titled (overviewbox, "overviewbox", "Overview");
-        
+
         var displaysbox = new DisplaysBox ();
         stack.add_titled (displaysbox, "displaysbox", "Displays");
-        
+
         var storagebox = new StorageBox (hdd_device);
         stack.add_titled (storagebox, "storagebox", "Storage");
-        
+
         var memorybox = new MemoryBox (ram);
         stack.add_titled (memorybox, "memorybox", "Memory");
-        
+
         // Switcher bind
         var stack_switcher = new Gtk.StackSwitcher ();
         stack_switcher.set_stack (stack);
-        
+
         header_bar.set_custom_title (stack_switcher);
         main_window.set_titlebar (header_bar);
-        
+
         main_window.add (stack);
         main_window.show_all ();
     }

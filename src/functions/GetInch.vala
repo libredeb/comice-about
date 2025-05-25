@@ -1,8 +1,13 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 Juan Pablo Lozano <libredeb@gmail.com>
+ */
+
 using GLib;
 
-public string getInch () {
+public string get_inch () {
     string output = "";
-    
+
     try {
         Process.spawn_command_line_sync (
             "/bin/bash -c 'xrandr | grep \" connected\" | head -n 1'",
@@ -12,20 +17,20 @@ public string getInch () {
         output = "0.0";
         warning ("Cant read screen inch");
     }
-    
+
     string[] screens = output.split (" ");
     string[] metrics = new string[2];
     int m = 0;
     string dimensions = "";
     foreach (unowned string str in screens) {
-		if ("mm" in str) {
-		    metrics[m] = str.replace ("mm", "");
-		    m++;
-		} else if (("x" in str) && (dimensions == "")) {
+        if ("mm" in str) {
+            metrics[m] = str.replace ("mm", "");
+            m++;
+        } else if (("x" in str) && (dimensions == "")) {
             dimensions = str;
         }
-	}
-    
+    }
+
     int width = 0;
     int height = 0;
 
@@ -37,22 +42,22 @@ public string getInch () {
         height = (int)(height * dpi) * 10;
     } else {
         width = int.parse (metrics[0]);
-	    height = int.parse (metrics[1]);
+        height = int.parse (metrics[1]);
     }
-	
-	int w = width * width;
-	int h = height * height;
-	double diagonal = GLib.Math.sqrt (w + h);
-	double inches = GLib.Math.round (diagonal/25.4);
-	
-	char[] buf = new char[double.DTOSTR_BUF_SIZE];
+
+    int w = width * width;
+    int h = height * height;
+    double diagonal = GLib.Math.sqrt (w + h);
+    double inches = GLib.Math.round (diagonal / 25.4);
+
+    char[] buf = new char[double.DTOSTR_BUF_SIZE];
     return inches.to_str (buf);
 }
 
 
-public string getScreenResolution () {
+public string get_screen_resolution () {
     string output = "";
-    
+
     try {
         Process.spawn_command_line_sync (
             "/bin/bash -c \"xrandr | grep '*' | head -n 1 | xargs | cut -d ' ' -f 1\"",
@@ -62,6 +67,6 @@ public string getScreenResolution () {
         output = "0x0";
         warning ("Cant read screen resolution");
     }
-    
+
     return output.strip ();
 }

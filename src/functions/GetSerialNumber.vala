@@ -1,6 +1,11 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 Juan Pablo Lozano <libredeb@gmail.com>
+ */
+
 using GLib;
 
-public string getSerialNumber () {
+public string get_serial_number () {
     /*
      * In this case, the original number is conformed by 12
      * characters alphanumeric. To simulate this format, we
@@ -28,6 +33,6 @@ public string getSerialNumber () {
     } catch (GLib.Error e) {
         serial_string = "UNKNOWN";
     }
-    
+
     return serial_string.strip ();
 }

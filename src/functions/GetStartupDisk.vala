@@ -1,4 +1,9 @@
-public string getStartupDisk () {
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 Juan Pablo Lozano <libredeb@gmail.com>
+ */
+
+public string get_startup_disk () {
     string find_mount = "";
     string output = "";
     try {
@@ -6,7 +11,7 @@ public string getStartupDisk () {
             """sed -n 's/ \/ .*//p' /proc/mounts""",
             out find_mount
         );
-        
+
         /*
          * If /cow is returned, it mean that you are running a live filesystem
          * So we need to find a filesystem with squashfs format.

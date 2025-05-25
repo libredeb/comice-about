@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 Juan Pablo Lozano <libredeb@gmail.com>
+ */
+
 using GLib;
 
 public string get_video_memory () {
@@ -11,7 +16,7 @@ public string get_video_memory () {
     } catch (GLib.Error e) {
         video_string = "0 MB";
     }
-    
+
     return video_string;
 }
 
@@ -33,7 +38,7 @@ public string get_graphics_from_string (string graphics) {
         // set back to unknown
         result = "Unknown";
     }
-    
+
     if ("Intel" in result) {
         return "Video Intel";
     } else if ("NVIDIA" in result) {
@@ -49,7 +54,7 @@ public string get_graphics_from_string (string graphics) {
     }
 }
 
-public string getGraphics () {
+public string get_graphics () {
 
     string graphics = "";
 
@@ -57,13 +62,13 @@ public string getGraphics () {
         Process.spawn_command_line_sync ("lspci", out graphics);
         // VGA-keyword indicates graphics-line
         if ("VGA" in graphics) {
-            string[] lines = graphics.split("\n");
+            string[] lines = graphics.split ("\n");
             graphics = "";
             foreach (var s in lines) {
                 if ("VGA" in s || "3D" in s) {
                     //Proper function that deals the models of video cards
-                    string model = get_graphics_from_string(s);
-                    if(graphics=="")
+                    string model = get_graphics_from_string (s);
+                    if (graphics == "")
                         graphics = model;
                     else
                         graphics += "\n" + model;
@@ -73,7 +78,7 @@ public string getGraphics () {
     } catch (GLib.Error e) {
         graphics = "Unknown video card";
     }
-    graphics = graphics + " " + get_video_memory();
+    graphics = graphics + " " + get_video_memory ();
 
     return graphics;
 }
