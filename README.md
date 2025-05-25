@@ -48,8 +48,12 @@ It is being developed for **comiceOS**.
 
 To control the behavior of **comice-about** you can set some of the next environment variables:
 
+- `ABOUT_OS`: allow to define the title of _Overview_ section (the name of the OS). This support `<b>` tags for bold text. For instance: `<b>comiceOS</b> Catalina`.
+- `ABOUT_OS_VERSION`: allow to define the **version** of the OS. This support pango markups.
 - `ABOUT_DISPLAY`: allow to define which application execute with **Display Preferences** button of _Display_ section.
 - `ABOUT_DISK_MANAGER`: allow to define which application execute with **Manage** buton of _Storage_ section.
+
+You can edit the file `/usr/share/applications/com.github.libredeb.comice-about.desktop` and add theese variables before the executable in `Exec=` tag. For instance: `Exec=env ABOUT_OS="myCustom <b>OS</b>" env ABOUT_OS_VERSION="version 1.2.3" com.github.libredeb.comice-about`
 
 ## How to Debug?
 

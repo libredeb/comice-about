@@ -27,13 +27,15 @@ public class OverviewBox : Gtk.Box {
 
         var overview_title_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_title = new Gtk.Label ("");
-        overview_title.set_markup (Resources.OVERVIEW_TITLE);
+        string title = GLib.Environment.get_variable ("ABOUT_OS") ?? Resources.OVERVIEW_TITLE;
+        overview_title.set_markup (title);
         overview_title.get_style_context ().add_class ("overview_title");
         overview_title_box.pack_start (overview_title, false, true, 0);
 
         var overview_version_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var overview_version = new Gtk.Label ("");
-        overview_version.set_markup (Resources.OVERVIEW_VERSION);
+        string os_version = GLib.Environment.get_variable ("ABOUT_OS_VERSION") ?? Resources.OVERVIEW_VERSION;
+        overview_version.set_markup (os_version);
         overview_version.get_style_context ().add_class ("overview_desc");
         overview_version_box.pack_start (overview_version, false, true, 0);
 
