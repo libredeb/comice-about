@@ -5,7 +5,7 @@
 
 public class OverviewBox : Gtk.Box {
 
-    public OverviewBox (string hdd_device, int amount_of_ram) {
+    public OverviewBox (string hdd_device, int amount_of_ram, bool custom) {
 
         // Overview Page
         var main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -17,7 +17,14 @@ public class OverviewBox : Gtk.Box {
         var logo_right_separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
         logo_left_separator.set_opacity (0.0);
         logo_right_separator.set_opacity (0.0);
-        var comice_os_image = new Gtk.Image.from_file (Resources.DATA_DIR + "/logo.png");
+
+        Gtk.Image comice_os_image;
+        if (custom) {
+            comice_os_image = new Gtk.Image.from_file (Resources.DATA_DIR + "/logo.png");
+        } else {
+            comice_os_image = new Gtk.Image.from_icon_name ("start-here", Gtk.IconSize.INVALID);
+            comice_os_image.set_pixel_size (170);
+        }
         overview_box.pack_start (logo_left_separator, true, true, 24);
         overview_box.pack_start (comice_os_image, false, true, 0);
         overview_box.pack_start (logo_right_separator, true, true, 24);

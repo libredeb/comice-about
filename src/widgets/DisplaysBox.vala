@@ -5,7 +5,7 @@
 
 public class DisplaysBox : Gtk.Box {
 
-    public DisplaysBox () {
+    public DisplaysBox (bool custom) {
 
         /*
          * Displays Page
@@ -15,7 +15,14 @@ public class DisplaysBox : Gtk.Box {
         // Laptop Icon
         var laptop_separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
         laptop_separator.set_opacity (0.0);
-        var laptop_image = new Gtk.Image.from_file (Resources.DATA_DIR + "/display.png");
+
+        Gtk.Image laptop_image;
+        if (custom) {
+            laptop_image = new Gtk.Image.from_file (Resources.DATA_DIR + "/display.png");
+        } else {
+            laptop_image = new Gtk.Image.from_icon_name ("video-display", Gtk.IconSize.INVALID);
+            laptop_image.set_pixel_size (170);
+        }
 
         // Display Label
         var display_separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
