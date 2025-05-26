@@ -5,7 +5,7 @@
 
 public class StorageBox : Gtk.Box {
 
-    public StorageBox (string hdd_device) {
+    public StorageBox (string hdd_device, bool custom) {
 
         /*
          * Storage Page
@@ -15,7 +15,15 @@ public class StorageBox : Gtk.Box {
 
         // Disk icon and label
         var disk_icon_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        var disk_icon = new Gtk.Image.from_file (Resources.DATA_DIR + "/hdd.png");
+
+        Gtk.Image disk_icon;
+        if (custom) {
+            disk_icon = new Gtk.Image.from_file (Resources.DATA_DIR + "/hdd.png");
+        } else {
+            disk_icon = new Gtk.Image.from_icon_name ("drive-harddisk", Gtk.IconSize.INVALID);
+            disk_icon.set_pixel_size (64);
+        }
+
         var disk_capacity = new Gtk.Label ("");
         disk_capacity.set_markup (get_storage_capacity (hdd_device));
         disk_capacity.get_style_context ().add_class ("overview_desc");

@@ -4,11 +4,26 @@
  */
 
 public class ComiceAbout : Gtk.Application {
+
+    private string[] parameters;
+
     public ComiceAbout () {
         Object (
             application_id: "com.github.libredeb.comice-about",
             flags: ApplicationFlags.FLAGS_NONE
         );
+
+        GLib.OptionEntry[] options = {
+            // --custom, -c BOOL
+            {
+                "custom", 'c', GLib.OptionFlags.NONE, GLib.OptionArg.NONE,
+                null, "Use custom comiceOS information?", null
+            },
+
+            // list terminator
+            { null }
+        };
+        this.add_main_option_entries (options);
     }
 
     protected override void activate () {
@@ -32,6 +47,11 @@ public class ComiceAbout : Gtk.Application {
         } catch (GLib.Error e) {
             warning ("Error loading CSS file!: " + e.message);
         }
+
+        // Use custom comiceOS information?
+        string flag = parameters[1].split ("=")[0];
+        bool flag_value = bool.parse (parameters[1].split ("=")[1]);
+        bool custom = parameters.length > 1 && (flag == "-c" || flag == "--custom") ? flag_value : true;
 
         // Create HeaderBar 
         var header_bar = new Gtk.HeaderBar ();
@@ -61,13 +81,13 @@ public class ComiceAbout : Gtk.Application {
             total_ram += int.parse (ram.get_sizes ()[i]);
         }
 
-        var overviewbox = new OverviewBox (hdd_device, total_ram);
+        var overviewbox = new OverviewBox (hdd_device, total_ram, custom);
         stack.add_titled (overviewbox, "overviewbox", "Overview");
 
-        var displaysbox = new DisplaysBox ();
+        var displaysbox = new DisplaysBox (custom);
         stack.add_titled (displaysbox, "displaysbox", "Displays");
 
-        var storagebox = new StorageBox (hdd_device);
+        var storagebox = new StorageBox (hdd_device, custom);
         stack.add_titled (storagebox, "storagebox", "Storage");
 
         var memorybox = new MemoryBox (ram);
@@ -85,6 +105,13 @@ public class ComiceAbout : Gtk.Application {
     }
 
     public static int main (string[] args) {
-        return new ComiceAbout ().run (args);
+
+        var app = new ComiceAbout ();
+
+        app.activate.connect (() => {
+            app.parameters = args;
+        });
+
+        return app.run (args);
     }
 }
